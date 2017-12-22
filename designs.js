@@ -1,46 +1,45 @@
 // Setting consts
-const picker = document.getElementById('colorPicker'); // For color picker
+const picker = $('#colorPicker'); // For color picker
 
-const grid = document.getElementById('pixel_canvas'); // For table
-const start = document.getElementById('start'); // For submit botton
+const grid = $('#pixel_canvas'); // For table
+const start = $('#start'); // For submit botton
 
-const gridHeight = document.getElementById('input_height'); // For number of rows
-const gridWidth = document.getElementById('input_width'); // For number of columns
+const gridHeight = $('#input_height'); // For number of rows
+const gridWidth = $('#input_width'); // For number of columns
 
 
 function makeGrid() {
 
-	for (var i = 0; i < gridHeight.value; i++) {
-
-		// Add single row
-		var row = grid.insertRow();
-
-		for (var x = 0; x < gridWidth.value; x++) {
-			// Add single cell
-			row.insertCell()
-		};
+	// Create a string of cells markup to append it in the rows loop
+	let cells = '';
+	for (var x = 0; x < gridWidth.val(); x++) {
+		cells += "<td></td>";
 	};
 
-	grid.addEventListener('click', function (event) {
-		if (event.target.tagName === "TD") {
-			event.target.style.backgroundColor = picker.value;
-		}
+	// Create rows of table and cells markup inside
+	for (var i = 0; i < gridHeight.val(); i++) {
+		grid.append("<tr>" + cells + "</tr>");
+	};
+
+	// Change background color of th cell when clicked
+	$('td').click(function () {
+		$(this).css('background', picker.val());
 	});
 
 };
 
 
 // To do on submit button click
-start.addEventListener('click', function (event) {
+start.click(function (event) {
 
 	// Prevent submitting form
 	event.preventDefault();
 
 
 	// Reset table
-	grid.innerHTML = '';
+	grid.empty();
 
 	// Create Grid
-	makeGrid()
+	makeGrid();
 
 });
