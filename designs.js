@@ -12,18 +12,35 @@ function makeGrid() {
 
 	// Create a string of cells markup to append it in the rows loop
 	let cells = '';
-	for (var x = 0; x < gridWidth.val(); x++) {
+	for (let x = 0; x < gridWidth.val(); x++) {
 		cells += "<td></td>";
 	};
 
 	// Create rows of table and cells markup inside
-	for (var i = 0; i < gridHeight.val(); i++) {
+	for (let i = 0; i < gridHeight.val(); i++) {
 		grid.append("<tr>" + cells + "</tr>");
 	};
 
-	// Change background color of th cell when clicked
-	$('td').click(function () {
-		$(this).css('background', picker.val());
+	// Change background color of the cell when mouse over and down
+	let paint = function (cell) {
+		$(cell).css('background', picker.val());
+	};
+
+	let mouse = false;
+
+	grid.on('mousedown', function () {
+		paint(event.target);
+		mouse = true;
+	});
+
+	grid.on('mouseleave mouseup', function () {
+		mouse = false;
+	});
+
+	grid.on('mouseover', function () {
+		if (mouse) {
+			paint(event.target);
+		};
 	});
 
 };
@@ -34,7 +51,6 @@ start.click(function (event) {
 
 	// Prevent submitting form
 	event.preventDefault();
-
 
 	// Reset table
 	grid.empty();
