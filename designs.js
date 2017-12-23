@@ -23,13 +23,13 @@ function makeGrid() {
 
 	// Change background color of the cell when mouse over and down
 	let paint = function (cell) {
-		$(cell).css('background', picker.val());
+		$(cell).attr('bgcolor', picker.val());
 	};
 
 	let mouse = false;
 
-	grid.on('mousedown', function () {
-		paint(event.target);
+	grid.on('mousedown', 'td', function () {
+		paint(this);
 		mouse = true;
 	});
 
@@ -37,9 +37,9 @@ function makeGrid() {
 		mouse = false;
 	});
 
-	grid.on('mouseover', function () {
+	grid.on('mouseover', 'td',function () {
 		if (mouse) {
-			paint(event.target);
+			paint(this);
 		};
 	});
 
