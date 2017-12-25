@@ -8,30 +8,53 @@ const gridHeight = document.getElementById('input_height'); // For number of row
 const gridWidth = document.getElementById('input_width'); // For number of columns
 
 
-function makeGrid() {
+function makeGrid() { // Build canvas (table)
 
-	for (var i = 0; i < gridHeight.value; i++) {
+	for (let i = 0; i < gridHeight.value; i++) {
 
 		// Add single row
-		var row = grid.insertRow();
+		let row = grid.insertRow();
 
-		for (var x = 0; x < gridWidth.value; x++) {
+		for (let x = 0; x < gridWidth.value; x++) {
 			// Add single cell
 			row.insertCell()
 		};
 	};
 
-	grid.addEventListener('click', function (event) {
-		if (event.target.tagName === "TD") {
-			event.target.style.backgroundColor = picker.value;
-		}
-	});
-
 };
 
 
-// To do on submit button click
-start.addEventListener('click', function (event) {
+(function () { // Change cell background-color when clicked or hover over with mouse button down
+
+	let active = false;
+
+	const paint = function (cell) {
+		if (active) {
+			if (cell.target.tagName === "TD") {
+				cell.target.style.backgroundColor = picker.value;
+			};
+		}
+	}
+
+	grid.addEventListener('mousedown', function (e) {
+		active = true;
+		paint(e);
+	})
+
+	grid.addEventListener('mouseleave', function () {
+		active = false;
+	})
+
+	document.addEventListener('mouseup', function () {
+		active = false;
+	})
+
+	grid.addEventListener('mouseover', paint);
+
+})()
+
+
+start.addEventListener('click', function (event) { // To do on submit button click
 
 	// Prevent submitting form
 	event.preventDefault();
