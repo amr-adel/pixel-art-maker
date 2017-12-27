@@ -20,6 +20,7 @@ table,
 tr,
 td {
 	border: 1px solid #666;
+	box-sizing: border-box;
 	-moz-user-select: -moz-none;
 	-ms-user-select: none;
 	-webkit-user-select: none;
@@ -31,12 +32,11 @@ table {
 	margin: 0 auto;
 }
 
-tr {
-	height: 20px;
-}
-
 td {
 	width: 20px;
+	height: 20px;
+	min-height: 20px;
+	min-width: 20px;
 }
 
 input[type=number] {
