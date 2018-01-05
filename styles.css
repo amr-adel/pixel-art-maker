@@ -42,3 +42,18 @@ td {
 input[type=number] {
 	width: 6em;
 }
+
+#recent {
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#recent li {
+	list-style: none;
+	height: 20px;
+	width: 20px;
+	float: left
+}

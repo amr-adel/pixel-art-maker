@@ -46,6 +46,7 @@ function makeGrid() { // Build canvas (table)
 	grid.addEventListener('mousedown', function (e) {
 		active = true;
 		paint(e);
+		addRecent();
 	})
 
 	grid.addEventListener('mouseleave', function () {
@@ -59,6 +60,33 @@ function makeGrid() { // Build canvas (table)
 	grid.addEventListener('mouseover', paint);
 
 })()
+
+
+const recent = [];
+
+function addRecent() {
+	
+	if (recent.length == 0) {
+		recent.push(picker.value);
+	} else {
+		for (let i = 0; i < recent.length; i++) {
+			if (recent[i] === picker.value) {
+				recent.splice(i, 1);
+			}
+		}
+		if (recent.length < 5) {
+				recent.push(picker.value)
+			} else if (recent.length >= 5) {
+				recent.shift();
+				recent.push(picker.value);
+			}
+	}
+	
+	for (let i = 0; i < recent.length; i++) {
+		document.getElementById('recent' + i).style.backgroundColor = recent[i];
+	}
+
+}
 
 
 start.addEventListener('click', function (event) { // To do on submit button click
