@@ -2,10 +2,12 @@
 <html>
 <head>
     <title>Pixel Art Maker!</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!--
     <h1>Lab: Pixel Art Maker</h1>
 
     <h2>Choose Grid Size</h2>
@@ -31,6 +33,47 @@
 		<li id="recent4"></li>
 	</ol>
 
-    <script src="designs.js"></script>
+-->
+
+<header class="header">
+	<h1 class="brand">Pixel Art Maker</h1>
+	<a href="#" id="help" class="far fa-question-circle help"></a>
+</header>
+
+<article class="container">
+	<div class="top">
+		<h2>Setup your canvas</h2>
+	</div>
+	<div class="tool-box">
+		<form action="" style="display: non">
+			<div class="dimensions">
+				<div class="height-input">
+					<input type="number" id="input-height" name="height" min="1" value="10">
+					<div class="icon">
+						<i class="fas fa-arrows-alt-v svg"></i>
+					</div>
+				</div>
+				<i class="fas fa-times times"></i>
+				<div class="width-input">
+					<div class="icon">
+						<i class="fas fa-arrows-alt-h svg"></i>
+					</div>
+					<input type="number" id="input-width" name="width" min="1" value="20">
+				</div>
+			</div>
+			<p class="notice">these values were suggested according to your viewport size.</p>
+			<hr>
+			<div class="bg-canvas">
+				<div class="bg-picker circle" id="bg-picker-ph">
+					<input type="color" id="bg-picker">
+				</div>
+				<p class="bg-color-notice">Pick canvas color</p>
+			</div>
+			<input type="submit" id="start" value="Create" class="create-canvas">
+		</form>
+	</div>
+
+</article>
+<script src="designs.js"></script>
 </body>
 </html>

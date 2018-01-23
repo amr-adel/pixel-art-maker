@@ -1,3 +1,4 @@
+/*
 body {
 	text-align: center;
 }
@@ -56,4 +57,274 @@ input[type=number] {
 	height: 20px;
 	width: 20px;
 	float: left
+}
+
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+	font-family: 'Roboto Condensed', arial, sans-serif;
+	min-width: 960px;
+	background-color: #edeff0;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input:focus {
+	outline: none;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+/*===============================================================================================================*/
+
+.header {
+	width: 100%;
+	height: 70px;
+	background-color: #3e474f;
+	position: relative;
+}
+
+.brand {
+	color: #59c2ab;
+	font-size: 20px;
+	line-height: 70px;
+	letter-spacing: 6px;
+	text-transform: uppercase;
+	margin-left: 25px;
+	width: 500px;
+	cursor: default;
+}
+
+.help {
+	color: #59c2ab;
+	display: block;
+	font-size: 20px;
+	line-height: 70px;
+	position: absolute;
+	right: 25px;
+	top: 25px;
+	cursor: pointer;
+}
+
+.container {
+	background-color: #fff;
+	width: 500px;
+	margin: 20vh auto 30px;
+	text-align: center;
+}
+
+.top {
+	text-transform: uppercase;
+	background-color: #59c2ab;
+	height: 70px;
+	border-radius: 4px 4px 0 0;
+}
+
+.top h2 {
+	color: #edeff0;
+	font-size: 20px;
+	line-height: 70px;
+	letter-spacing: 4px;
+}
+
+.tool-box {
+	background-color: #f9fafa;
+	padding: 30px;
+	text-transform: uppercase;
+}
+
+.dimensions {
+	width: 100%;
+	height: 50px;
+}
+
+.height-input,
+.width-input {
+	height: 50px;
+	width: 150px;
+	float: left;
+}
+
+.height-input .icon,
+.width-input .icon {
+	color: #59c2ab;
+	width: 50px;
+	height: 50px;
+	padding-top: 15px;
+	background-color: #edeff0;
+	border: 1px solid #b2bbbd;
+	display: block;
+	float: left;
+}
+
+.width-input .icon {
+	border-radius: 4px 0 0 4px;
+}
+
+.height-input .icon {
+	border-radius: 0 4px 4px 0;
+}
+
+.svg {
+	height: 20px;
+	width: 20px;
+}
+
+.height-input input,
+.width-input input {
+	height: 50px;
+	width: 100px;
+	font-size: 20px;
+	color: #7b8b8e;
+	background-color: #fff;
+	border: 1px solid #b2bbbd;
+	display: block;
+	float: left;
+	text-align: center;
+	line-height: 50px;
+}
+
+.height-input input {
+	border-right: 0;
+	border-radius: 4px 0 0 4px;
+}
+
+.width-input input {
+	border-left: 0;
+	border-radius: 0 4px 4px 0;
+
+}
+
+.times {
+	height: 20px;
+	width: 20px;
+	float: left;
+	margin: 15px 60px;
+	color: #7b8b8e;
+}
+
+.notice {
+	font-size: 12px;
+	color: #b2bbbd;
+	margin: 20px auto 10px;
+}
+
+hr {
+	width: 100%;
+	height: 1px;
+	background-color: #edeff0;
+}
+
+.bg-canvas {
+	margin: 20px auto;
+}
+
+input[type='color'] {
+	opacity: 0;
+}
+
+.bg-picker {
+	vertical-align: middle;
+	background-color: #fff;
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+}
+
+.circle {
+	box-shadow: 0 0 3px 1px rgba(178, 187, 189, 0.5);
+	border-radius: 50%;
+}
+
+.bg-color-notice {
+	color: #7b8b8e;
+	font-size: 20px;
+	display: inline-block;
+	margin-left: 20px;
+	vertical-align: middle;
+}
+
+.create-canvas {
+	height: 50px;
+	width: 200px;
+	background-color: #59c2ab;
+	color: #edeff0;
+	font-size: 20px;
+	line-height: 50px;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	border-radius: 4px;
+	margin-top: 15px;
+}
+
+.create-canvas:hover {
+	cursor: pointer;
+	background-color: #4eab97;
 }
