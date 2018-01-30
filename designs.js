@@ -105,16 +105,57 @@ start.addEventListener('click', function (event) { // To do on submit button cli
 
 });
 
+
 */
 
-const test = document.getElementById('bg-picker-ph');
-const picker = document.getElementById('bg-picker');
 
-test.addEventListener('click', function() {
+const main = document.getElementById('container');
+
+
+
+const picker = document.getElementById('picker');
+const pickerPh = document.getElementById('picker-ph');
+
+pickerPh.addEventListener('click', function() {
 	picker.focus();
 	picker.click();
 })
 
 picker.addEventListener('change', function() {
-	test.style.backgroundColor = picker.value;
+	pickerPh.style.backgroundColor = picker.value;
+})
+
+//=======================================================================
+
+const bgPicker = document.getElementById('bg-picker');
+const bgPickerPh = document.getElementById('bg-picker-ph');
+const canBgPickerPh = document.getElementById('can-bg-picker-ph');
+
+bgPickerPh.addEventListener('click', function() {
+	bgPicker.focus();
+	bgPicker.click();
+})
+
+canBgPickerPh.addEventListener('click', function() {
+	bgPicker.focus();
+	bgPicker.click();
+})
+
+bgPicker.addEventListener('change', function() {
+	bgPickerPh.style.backgroundColor = bgPicker.value;
+	canBgPickerPh.style.backgroundColor = bgPicker.value;
+})
+
+//=======================================================================
+
+const reset = document.getElementById('reset');
+const start = document.getElementById('start');
+
+start.addEventListener('click', function (event) {
+	event.preventDefault();
+	main.classList.add('canvas');
+})
+
+reset.addEventListener('click', function () {
+	main.classList.remove('canvas');
 })
