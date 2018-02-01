@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	const gridHeight = document.getElementById('input-height'); // For number of rows
 	const gridWidth = document.getElementById('input-width'); // For number of columns
 
@@ -8,91 +8,31 @@
 
 	gridHeight.setAttribute("value", heightValue); // Set initial grid height value
 	gridWidth.setAttribute("value", widthValue); // Set initial grid width value
-	
+
 	const main = document.getElementById('container');
 	const grid = document.getElementById('canvas-grid'); // For table
 	const start = document.getElementById('start'); // For submit botton
-	
-	const reset = document.getElementById('reset');	
 
-	
+	const reset = document.getElementById('reset');
+
+
 	const picker = document.getElementById('picker');
 	const pickerPh = document.getElementById('picker-ph');
-	
+	const recentList = document.getElementById('recent');
 
-	pickerPh.addEventListener('click', function() {
-		picker.focus();
-		picker.click();
-	})
 
-	picker.addEventListener('change', function() {
-		pickerPh.style.backgroundColor = picker.value;
-		
-		for (let i = 0; i < recent.length; i++) {
-			document.getElementById('recent' + i).style.backgroundColor = recent[i];
-		}
-	})
 
-	
-	
-	
-	
-	let active = false; // Paint **************************************************************************************
-
-	const paint = function (cell) {
-		if (active) {
-			if (cell.target.tagName === "TD") {
-				cell.target.style.backgroundColor = picker.value;
-			};
-		}
-	}
-	
-	const erase = function (cell) {
-		if (active) {
-			if (cell.target.tagName === "TD") {
-				cell.target.style.backgroundColor = "";
-			};
-		}
+	function rgbToHex(rgb) { // Convert rgb into hexadecimal ==============================================================
+		var a = rgb.split("(")[1].split(")")[0].split(",");
+		return "#" + a.map(function (x) {
+			x = parseInt(x).toString(16);
+			return (x.length == 1) ? "0" + x : x;
+		}).join("");
 	}
 
-	grid.addEventListener('mousedown', function (e) {
-		active = true;
-		let tool = document.querySelector('input[name="tool"]:checked').value;
-		
-		if (tool === "paint") {
-			paint(e);
-			addRecent();
-		} else if (tool === "erase") {
-			erase(e);
-		}
-	})
 
-	grid.addEventListener('mouseleave', function () {
-		active = false;
-	})
+	const recent = []; // Add recent color ================================================================================
 
-	document.addEventListener('mouseup', function () {
-		active = false;
-	})
-
-	grid.addEventListener('mouseover', function(e) {
-		
-		let tool = document.querySelector('input[name="tool"]:checked').value;
-		
-		if (tool === "paint") {
-			paint(e);
-		} else if (tool === "erase") {
-			erase(e);
-		}
-	});
-	
-	
-	
-	
-	
-	const recent = []; // Add recent color ***********************************************************************************
-	
-	
 	function addRecent() {
 
 		if (recent.length == 0) {
@@ -112,8 +52,95 @@
 		}
 
 	}
+
+
+	function recolor() { // Update recent colors and picker placeholder ====================================================
+		pickerPh.style.backgroundColor = picker.value;
+
+		document.getElementById('selPaint').click();
+
+		for (let i = 0; i < recent.length; i++) {
+			document.getElementById('recent' + i).style.backgroundColor = recent[i];
+		}
+	};
+
+
+	recentList.addEventListener('click', function (e) { // Pick color from recently used colors when clicked ================
+		if (e.target.tagName === "LI" && e.target.style.backgroundColor != 0) {
+			picker.value = rgbToHex(e.target.style.backgroundColor);
+			recolor();
+		}
+	});
+
+
+	pickerPh.addEventListener('click', function () { // Simulate color picker click =========================================
+		picker.focus();
+		picker.click();
+	})
+
+	picker.addEventListener('change', recolor) // Update recent colors when picker color changed ===========================
+
+
+	let active = false; // Paint ===========================================================================================
+
+	const paint = function (cell) { // Paint ===============================================================================
+		if (active) {
+			if (cell.target.tagName === "TD") {
+				cell.target.style.backgroundColor = picker.value;
+			};
+		}
+	}
+
+	const erase = function (cell) { // Erase ===============================================================================
+		if (active) {
+			if (cell.target.tagName === "TD") {
+				cell.target.style.backgroundColor = "";
+			};
+		}
+	}
 	
-	
+	const pick = function (cell) { // Pick =================================================================================
+		if (cell.target.tagName === "TD" && cell.target.style.backgroundColor != 0) {
+			picker.value = rgbToHex(cell.target.style.backgroundColor);
+			recolor();
+		}
+	}
+
+	grid.addEventListener('mousedown', function (e) {
+		active = true;
+		let tool = document.querySelector('input[name="tool"]:checked').value;
+
+		if (tool === "paint") {
+			paint(e);
+			addRecent();
+		} else if (tool === "erase") {
+			erase(e);
+		} else if (tool === "pick") {
+			pick(e);
+		}
+	})
+
+	grid.addEventListener('mouseleave', function () {
+		active = false;
+	})
+
+	document.addEventListener('mouseup', function () {
+		active = false;
+	})
+
+	grid.addEventListener('mouseover', function (e) { // Paint or erase on mouse over ========================================
+
+		let tool = document.querySelector('input[name="tool"]:checked').value;
+
+		if (tool === "paint") {
+			paint(e);
+		} else if (tool === "erase") {
+			erase(e);
+		}
+	});
+
+
+
 	function makeGrid() { // Build canvas (table) ****************************************************************************************
 
 		for (let i = 0; i < gridHeight.value; i++) {
@@ -131,23 +158,16 @@
 
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
 
 	start.addEventListener('click', function (event) { // To do on submit button click ****************************************************************************************
 
 		// Prevent submitting form
 		event.preventDefault();
-
 
 		// Reset table
 		grid.innerHTML = '';
