@@ -200,8 +200,7 @@ input[type="color"]::-webkit-color-swatch {
 	display: inline-block;
 	background-color: #fff;
 	border-radius: 4px 4px 0 0;
-/*	width: 500px;*/
-	margin: 20vh auto 30px;
+	margin: calc(35vh - 150px) auto;
 	text-align: center;
 }
 
@@ -457,7 +456,6 @@ input[type='color'] {
 	background-color: #000;
 	position: absolute;
 	left: 50px;
-/*	top: 5px;*/
 }
 
 .colors li {
@@ -469,7 +467,6 @@ input[type='color'] {
 	border-radius: 50%;
 	box-shadow: 0 0 3px 1px rgba(178, 187, 189, 0.5);
 	display: inline-block;
-	cursor: no-drop;
 }
 
 .add {
@@ -530,7 +527,9 @@ input[type='color'] {
 .clear, .reset {
 	font-size: 20px;
 	display: inline-block;
+	vertical-align: middle;
 	height: 30px;
+	line-height: 30px;
 	width: 80px;
 	text-transform: uppercase;
 	border-radius: 4px;
@@ -583,6 +582,7 @@ table td {
 	float: left;
 	font-size: 12px;
 	text-transform: uppercase;
+	margin-bottom: 10px;
 }
 .font:hover {
 	color: #4dadf7;
