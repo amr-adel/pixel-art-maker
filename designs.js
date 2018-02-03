@@ -22,7 +22,7 @@
 
 
 
-	function rgbToHex(rgb) { // Convert rgb into hexadecimal ==============================================================
+	function rgbToHex(rgb) { // Convert rgb into hexadecimal ==================================================================
 		var a = rgb.split("(")[1].split(")")[0].split(",");
 		return "#" + a.map(function (x) {
 			x = parseInt(x).toString(16);
@@ -31,7 +31,7 @@
 	}
 
 
-	const recent = []; // Add recent color ================================================================================
+	const recent = []; // Add recent color ====================================================================================
 
 	function addRecent() {
 
@@ -54,7 +54,7 @@
 	}
 
 
-	function recolor() { // Update recent colors and picker placeholder ====================================================
+	function recolor() { // Update recent colors and picker placeholder =======================================================
 		pickerPh.style.backgroundColor = picker.value;
 
 		document.getElementById('selPaint').click();
@@ -65,7 +65,7 @@
 	};
 
 
-	recentList.addEventListener('click', function (e) { // Pick color from recently used colors when clicked ================
+	recentList.addEventListener('click', function (e) { // Pick color from recently used colors when clicked ==================
 		if (e.target.tagName === "LI" && e.target.style.backgroundColor != 0) {
 			picker.value = rgbToHex(e.target.style.backgroundColor);
 			recolor();
@@ -73,17 +73,17 @@
 	});
 
 
-	pickerPh.addEventListener('click', function () { // Simulate color picker click =========================================
+	pickerPh.addEventListener('click', function () { // Simulate color picker click ===========================================
 		picker.focus();
 		picker.click();
 	})
 
-	picker.addEventListener('change', recolor) // Update recent colors when picker color changed ===========================
+	picker.addEventListener('change', recolor) // Update recent colors when picker color changed ==============================
 
 
-	let active = false; // Paint ===========================================================================================
+	let active = false; // Paint ==============================================================================================
 
-	const paint = function (cell) { // Paint ===============================================================================
+	const paint = function (cell) { // Paint ==================================================================================
 		if (active) {
 			if (cell.target.tagName === "TD") {
 				cell.target.style.backgroundColor = picker.value;
@@ -91,15 +91,15 @@
 		}
 	}
 
-	const erase = function (cell) { // Erase ===============================================================================
+	const erase = function (cell) { // Erase ==================================================================================
 		if (active) {
 			if (cell.target.tagName === "TD") {
 				cell.target.style.backgroundColor = "";
 			};
 		}
 	}
-	
-	const pick = function (cell) { // Pick =================================================================================
+
+	const pick = function (cell) { // Pick ====================================================================================
 		if (cell.target.tagName === "TD" && cell.target.style.backgroundColor != 0) {
 			picker.value = rgbToHex(cell.target.style.backgroundColor);
 			recolor();
@@ -128,7 +128,7 @@
 		active = false;
 	})
 
-	grid.addEventListener('mouseover', function (e) { // Paint or erase on mouse over ========================================
+	grid.addEventListener('mouseover', function (e) { // Paint or erase on mouse over =========================================
 
 		let tool = document.querySelector('input[name="tool"]:checked').value;
 
@@ -141,7 +141,7 @@
 
 
 
-	function makeGrid() { // Build canvas (table) ****************************************************************************************
+	function makeGrid() { // Build canvas (table) =============================================================================
 
 		for (let i = 0; i < gridHeight.value; i++) {
 
@@ -157,6 +157,58 @@
 	};
 
 
+	document.getElementById('add-top').addEventListener('click', function () { // Add row to the top ==========================
+		const tds = document.querySelector('#canvas-grid tr').innerHTML;
+		grid.insertRow(0).setAttribute('id', 'temp');
+		document.getElementById('temp').innerHTML = tds;
+		document.querySelectorAll('#temp td').forEach(function (td) {
+			td.removeAttribute('style');
+		});
+		document.getElementById('temp').removeAttribute('id');
+	});
+
+	document.getElementById('add-bottom').addEventListener('click', function () { // Add row to the bottom ====================
+		const tds = document.querySelector('#canvas-grid tr').innerHTML;
+		grid.insertRow(-1).setAttribute('id', 'temp');
+		document.getElementById('temp').innerHTML = tds;
+		document.querySelectorAll('#temp td').forEach(function (td) {
+			td.removeAttribute('style');
+		});
+		document.getElementById('temp').removeAttribute('id');
+	});
+
+	document.getElementById('add-right').addEventListener('click', function () { // Add column to the rigth ===================
+		document.querySelectorAll('#canvas-grid tr').forEach(function (tr) {
+			tr.insertCell(-1);
+		});
+	});
+
+	document.getElementById('add-left').addEventListener('click', function () { // Add column to the left =====================
+		document.querySelectorAll('#canvas-grid tr').forEach(function (tr) {
+			tr.insertCell(0);
+		});
+	});
+
+
+	document.getElementById('remove-top').addEventListener('click', function () { // Reomve a row from the top =================
+		grid.deleteRow(0);
+	});
+
+	document.getElementById('remove-bottom').addEventListener('click', function () { // Reomve a row from the bottom ===========
+		grid.deleteRow(-1);
+	});
+
+	document.getElementById('remove-right').addEventListener('click', function () { // Remove column from the rigth ===========
+		document.querySelectorAll('#canvas-grid tr').forEach(function (tr) {
+			tr.deleteCell(-1);
+		});
+	});
+
+	document.getElementById('remove-left').addEventListener('click', function () { // Remove column from the left =============
+		document.querySelectorAll('#canvas-grid tr').forEach(function (tr) {
+			tr.deleteCell(0);
+		});
+	});
 
 
 
