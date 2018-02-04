@@ -9,10 +9,11 @@
 
 	const picker = document.getElementById('picker');
 	const pickerPh = document.getElementById('picker-ph');
-	const recent = []; // Add recent color
 	const recentList = document.getElementById('recent');
 
-
+	const bgPicker = document.getElementById('bg-picker');
+	const bgPickerPh = document.getElementById('bg-picker-ph');
+	const canBgPickerPh = document.getElementById('can-bg-picker-ph');
 
 
 
@@ -27,7 +28,7 @@
 
 
 
-	function rgbToHex(rgb) { // Convert rgb into hexadecimal ==================================================================
+	function rgbToHex(rgb) { // Convert rgb into hexadecimal (Not my code, can't remember source) =============================
 		var a = rgb.split("(")[1].split(")")[0].split(",");
 		return "#" + a.map(function (x) {
 			x = parseInt(x).toString(16);
@@ -36,8 +37,26 @@
 	}
 
 
+	bgPickerPh.addEventListener('click', function() { // Change canvas background color ========================================
+		bgPicker.focus();
+		bgPicker.click();
+	})
 
-	function addRecent() { // Save recently used colors =======================================================================
+	canBgPickerPh.addEventListener('click', function() {
+		bgPicker.focus();
+		bgPicker.click();
+	})
+
+	bgPicker.addEventListener('change', function() {
+		grid.style.backgroundColor = bgPicker.value;
+		bgPickerPh.style.backgroundColor = bgPicker.value;
+		canBgPickerPh.style.backgroundColor = bgPicker.value;
+	})	
+	
+
+	const recent = []; // Save recently used colors ===========================================================================
+	
+	function addRecent() {
 
 		if (recent.length == 0) {
 			recent.unshift(picker.value);
@@ -244,109 +263,4 @@
 	});
 
 
-}());
-
-
-/*
-
-// Setting consts
-
-
-const picker = document.getElementById('colorPicker'); // For color picker
-
-
-
-
-
-(function () { // Change cell background-color when clicked or hover over with mouse button down
-
-	let active = false;
-
-	const paint = function (cell) {
-		if (active) {
-			if (cell.target.tagName === "TD") {
-				cell.target.style.backgroundColor = picker.value;
-			};
-		}
-	}
-
-	grid.addEventListener('mousedown', function (e) {
-		active = true;
-		paint(e);
-		addRecent();
-	})
-
-	grid.addEventListener('mouseleave', function () {
-		active = false;
-	})
-
-	document.addEventListener('mouseup', function () {
-		active = false;
-	})
-
-	grid.addEventListener('mouseover', paint);
-
-})()
-
-
-const recent = [];
-
-function addRecent() {
-	
-	if (recent.length == 0) {
-		recent.push(picker.value);
-	} else {
-		for (let i = 0; i < recent.length; i++) {
-			if (recent[i] === picker.value) {
-				recent.splice(i, 1);
-			}
-		}
-		if (recent.length < 5) {
-				recent.push(picker.value)
-			} else if (recent.length >= 5) {
-				recent.shift();
-				recent.push(picker.value);
-			}
-	}
-	
-	for (let i = 0; i < recent.length; i++) {
-		document.getElementById('recent' + i).style.backgroundColor = recent[i];
-	}
-
-}
-
-
-
-
-
-
-
-
-//=======================================================================
-
-const bgPicker = document.getElementById('bg-picker');
-const bgPickerPh = document.getElementById('bg-picker-ph');
-const canBgPickerPh = document.getElementById('can-bg-picker-ph');
-
-bgPickerPh.addEventListener('click', function() {
-	bgPicker.focus();
-	bgPicker.click();
-})
-
-canBgPickerPh.addEventListener('click', function() {
-	bgPicker.focus();
-	bgPicker.click();
-})
-
-bgPicker.addEventListener('change', function() {
-	bgPickerPh.style.backgroundColor = bgPicker.value;
-	canBgPickerPh.style.backgroundColor = bgPicker.value;
-})
-
-//=======================================================================
-
-
-
-
-
-*/
+})();
