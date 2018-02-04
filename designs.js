@@ -1,6 +1,22 @@
 (function () {
+
 	const gridHeight = document.getElementById('input-height'); // For number of rows
 	const gridWidth = document.getElementById('input-width'); // For number of columns
+
+	const main = document.getElementById('container');
+	const grid = document.getElementById('canvas-grid'); // For table
+	const start = document.getElementById('start'); // For submit botton
+
+	const picker = document.getElementById('picker');
+	const pickerPh = document.getElementById('picker-ph');
+	const recent = []; // Add recent color
+	const recentList = document.getElementById('recent');
+
+
+
+
+
+	grid.innerHTML = ''; // Reset table
 
 	const heightValue = Math.floor((window.innerHeight - 240) / 20); // Calculate optimal number of rows according to viewport height
 	const widthValue = Math.floor((window.innerWidth - 40) / 20); // Calculate optimal number of columns according to viewport width
@@ -8,17 +24,6 @@
 
 	gridHeight.setAttribute("value", heightValue); // Set initial grid height value
 	gridWidth.setAttribute("value", widthValue); // Set initial grid width value
-
-	const main = document.getElementById('container');
-	const grid = document.getElementById('canvas-grid'); // For table
-	const start = document.getElementById('start'); // For submit botton
-
-	const reset = document.getElementById('reset');
-
-
-	const picker = document.getElementById('picker');
-	const pickerPh = document.getElementById('picker-ph');
-	const recentList = document.getElementById('recent');
 
 
 
@@ -31,9 +36,8 @@
 	}
 
 
-	const recent = []; // Add recent color ====================================================================================
 
-	function addRecent() {
+	function addRecent() { // Save recently used colors =======================================================================
 
 		if (recent.length == 0) {
 			recent.unshift(picker.value);
@@ -120,15 +124,15 @@
 		}
 	})
 
-	grid.addEventListener('mouseleave', function () {
+	grid.addEventListener('mouseleave', function () { // Mouseover paint and erase inactive when out of canvas area ===========
 		active = false;
 	})
 
-	document.addEventListener('mouseup', function () {
+	document.addEventListener('mouseup', function () { // Mouseover paint and erase inactive when mouse not pressed ===========
 		active = false;
 	})
 
-	grid.addEventListener('mouseover', function (e) { // Paint or erase on mouse over =========================================
+	grid.addEventListener('mouseover', function (e) { // Paint or erase on mouseover ==========================================
 
 		let tool = document.querySelector('input[name="tool"]:checked').value;
 
@@ -138,6 +142,16 @@
 			erase(e);
 		}
 	});
+
+	document.getElementById('clear').addEventListener('click', function () { // Clear canvas ==================================
+		grid.querySelectorAll('td').forEach(function (td) {
+			td.removeAttribute('style');
+		});
+	});
+
+	document.getElementById('reset').addEventListener('click', function () { // Reinitialize app ==============================
+		location.reload();
+	})
 
 
 
@@ -216,25 +230,19 @@
 
 
 
-	start.addEventListener('click', function (event) { // To do on submit button click ****************************************************************************************
+	start.addEventListener('click', function (event) { // To do on CREATE button click ========================================
 
 		// Prevent submitting form
 		event.preventDefault();
 
-		// Reset table
-		grid.innerHTML = '';
-
+		// Canvas layout
 		main.classList.add('canvas');
 
-		// Create Grid
+		// Create canvas
 		makeGrid()
 
 	});
 
-
-	reset.addEventListener('click', function () { // Reset Canvas  ****************************************************************************************
-		main.classList.remove('canvas');
-	})
 
 }());
 
