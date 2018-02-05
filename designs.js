@@ -190,7 +190,7 @@
 	};
 
 
-	document.getElementById('add-top').addEventListener('click', function () { // Add row to the top ==========================
+	document.getElementById('add-top-').addEventListener('click', function () { // Add row to the top ==========================
 		const tds = document.querySelector('#canvas-grid tr').innerHTML;
 		grid.insertRow(0).setAttribute('id', 'temp');
 		document.getElementById('temp').innerHTML = tds;

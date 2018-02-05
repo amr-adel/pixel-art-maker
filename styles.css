@@ -122,6 +122,13 @@ table {
 	border-spacing: 0;
 }
 
+table, tr, td, .tool-box{
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
 input:focus {
 	outline: none;
 }
@@ -377,6 +384,8 @@ input[type='color'] {
 }
 .canvas .canvas-tools {
 	display: block;
+	width: 850px;
+	margin: 0 auto;
 }
 .canvas .tool-box {
 	height: 70px;
@@ -384,7 +393,6 @@ input[type='color'] {
 }
 
 .undo, .redo {
-/*	display: inline-block;*/
 	font-size: 30px;
 	line-height: 70px;
 	color: #b2bbbd;
@@ -394,7 +402,7 @@ input[type='color'] {
 	color: #59c2ab;
 }
 .undo-redo, .tools, .colors, .add, .remove {
-	display: inline-block;
+	float: left;
 	padding: 0 15px;
 	border-right: 1px solid #b2bbbd;
 	vertical-align: middle;
@@ -565,7 +573,6 @@ table td {
 	min-width: 20px;
 	height: 20px;
 	border: 1px solid #edeff0;
-/*	border: 1px solid #000;*/
 }
 
 .footer {
