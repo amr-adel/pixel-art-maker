@@ -19,10 +19,10 @@
 			<h2>Setup your canvas</h2>
 		</div>
 		<div class="tool-box">
-			<form class="setup">
+			<form class="setup" id="setupForm">
 				<div class="dimensions">
 					<div class="height-input">
-						<input type="number" id="input-height" name="height" min="1" value="10">
+						<input type="number" id="input-height" name="height" min="10" max="50">
 						<div class="icon">
 							<i class="fas fa-arrows-alt-v svg"></i>
 						</div>
@@ -32,7 +32,7 @@
 						<div class="icon">
 							<i class="fas fa-arrows-alt-h svg"></i>
 						</div>
-						<input type="number" id="input-width" name="width" min="1" value="20">
+						<input type="number" id="input-width" name="width" min="10" max="100">
 					</div>
 				</div>
 				<p class="notice">these values were suggested according to your viewport size.</p>
@@ -43,7 +43,7 @@
 					</div>
 					<p class="bg-color-notice">Pick canvas color</p>
 				</div>
-				<input type="submit" id="start" value="Create" class="create-canvas">
+				<input type="submit" value="Create" class="create-canvas">
 			</form>
 			<!--===================================================================================================-->
 			<div class="canvas-tools">
@@ -107,6 +107,6 @@
 			<a href="https://www.freecodecamp.org/amr-adel" target="_blank"><i class="fab fa-free-code-camp"></i></a>
 		</div>
 	</footer>
-	<script src="designs.js"></script>
+	<script src="pamApp.js"></script>
 </body>
 </html>

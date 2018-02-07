@@ -5,7 +5,7 @@
 
 	const main = document.getElementById('container');
 	const grid = document.getElementById('canvas-grid'); // For table
-	const start = document.getElementById('start'); // For submit botton
+	const form = document.getElementById('setupForm'); // For submit botton
 
 	const picker = document.getElementById('picker');
 	const pickerPh = document.getElementById('picker-ph');
@@ -249,7 +249,7 @@
 
 
 
-	start.addEventListener('click', function (event) { // To do on CREATE button click ========================================
+	form.addEventListener('submit', function (event) { // To do on CREATE button click ========================================
 
 		// Prevent submitting form
 		event.preventDefault();
