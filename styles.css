@@ -333,10 +333,11 @@ input[type='color'] {
 	font-size: 30px;
 	line-height: 70px;
 	color: #b2bbbd;
-	cursor: pointer;
+	color: #eee;
+	cursor: not-allowed;
 }
 .undo:hover, .redo:hover, .tools label:hover {
-	color: #59c2ab;
+	/* color: #59c2ab; */
 }
 .undo-redo, .tools, .colors, .add, .remove {
 	float: left;
